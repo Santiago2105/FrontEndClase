@@ -1,0 +1,31 @@
+<h3>Resumen de Facultades</h3>
+<br>
+<button mat-raised-button routerLink="/faculty-list" >Ir a Lista de Facultades</button>
+<br>
+
+<table mat-table [dataSource]="dsFaculties" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="majorCount">
+    <th mat-header-cell *matHeaderCellDef> # Carreras </th>
+    <td mat-cell *matCellDef="let element"> {{element.majorCount}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+<br>
+<div style="width: 800px; height: 300px;">
+<ngx-charts-bar-vertical [results]="resumenGraficoFacultades"  [xAxis]="true"
+  [yAxis]="false" [showGridLines]="true"></ngx-charts-bar-vertical>
+  </div>

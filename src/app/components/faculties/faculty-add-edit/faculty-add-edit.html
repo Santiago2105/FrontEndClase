@@ -1,0 +1,57 @@
+<h3 *ngIf="!(facultyId>0)">Agregar una Facultad</h3>
+<h3 *ngIf="facultyId>0">Editar una Facultad</h3>
+<br>
+<form [formGroup]="crudForm">
+
+    <mat-form-field>
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="id" readonly="true">
+    </mat-form-field>
+<br>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">        
+    </mat-form-field>    
+    <span style="color:red"  *ngIf="this.crudForm.get('name')?.hasError('required') && this.crudForm.get('name')?.touched " >Este campo es requerido</span>
+    <span style="color:red"  *ngIf="this.crudForm.get('name')?.hasError('minlength') && this.crudForm.get('name')?.touched " >Se requiere mínimo 2 caracteres</span>
+    <br>
+    <mat-form-field>
+        <mat-label>Director</mat-label>
+        <input matInput formControlName="director">
+        <span style="color:red"  *ngIf="this.crudForm.get('director')?.hasError('required') && this.crudForm.get('name')?.touched " >Este campo es requerido</span>
+        <span style="color:red"  *ngIf="this.crudForm.get('director')?.hasError('minlength') && this.crudForm.get('name')?.touched " >Se requiere mínimo 2 caracteres</span>
+    </mat-form-field>
+<br>
+    <mat-checkbox matInput formControlName="active">¿Habilitado?</mat-checkbox>
+<br>
+
+
+<mat-form-field>
+  <mat-label>Fecha de Fundación</mat-label>
+  <input matInput [matDatepicker]="picker" formControlName="foundationDate">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<!--
+    <mat-form-field>
+        <mat-label>Fecha de Fundación</mat-label>
+        <input matInput formControlName="fundingDate">
+    </mat-form-field>
+-->
+<mat-label style="font-weight: bold;">Logotipo</mat-label><br>
+    <input type="file" formControlName="logo" accept="image/png, image/jpeg" (change)="actualizaLogo($event)">
+    <br>
+    <span>Ruta: {{rutaLogo}}</span>
+    <br>
+    <img width="100" height="100" [src]="base64logo">    
+<br>
+
+
+</form>
+
+<br>
+<button mat-raised-button routerLink="/faculty-list">Cancelar</button>
+ | 
+<button mat-flat-button (click)="Grabar()" >Grabar</button>
