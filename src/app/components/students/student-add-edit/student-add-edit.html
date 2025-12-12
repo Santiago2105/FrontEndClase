@@ -1,0 +1,46 @@
+<h3 *ngIf="!(studentId>0)">Agregar un Estudiante</h3>
+<h3 *ngIf="studentId>0">Editar un Estudiante</h3>
+<br>
+<form [formGroup]="crudForm">
+
+    <mat-form-field>
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="id" readonly="true">
+    </mat-form-field>
+<br>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Ciudad</mat-label>
+        <input matInput formControlName="city">
+    </mat-form-field>
+<br>
+    <mat-form-field>
+        <mat-label>Créditos</mat-label>
+        <input matInput formControlName="credits">
+    </mat-form-field>
+<br>
+
+    <mat-form-field>
+        <mat-label>Facultad</mat-label>
+        <mat-select (selectionChange)="CargarCarreras($event)" formControlName="facultyId">
+            <mat-option *ngFor="let faculty of faculties" [value]="faculty.id">{{faculty.name}}</mat-option>
+        </mat-select>        
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Carrera</mat-label>
+        <mat-select formControlName="majorId">
+            <mat-option *ngFor="let major of majors" [value]="major.id">{{major.name}}</mat-option>
+        </mat-select>        
+    </mat-form-field>
+    
+</form>
+
+<br>
+<button mat-raised-button routerLink="/student-list">Cancelar</button>
+ | 
+<button mat-flat-button (click)="Grabar()" >Grabar</button>

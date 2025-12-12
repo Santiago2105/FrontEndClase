@@ -1,0 +1,77 @@
+<h3 >Lista de Cursos del Estudiante</h3>
+<br>
+<span style="font-size: large; font-weight: bold;">Id: </span>
+<span style="font-size: large">{{studentDTO.id}}</span>
+&nbsp;&nbsp;&nbsp;
+<span style="font-size: large; font-weight: bold;">Nombre: </span>
+<span style="font-size: large">{{studentDTO.name}}</span>
+<br>
+<span style="font-size: large; font-weight: bold;">Carrera: </span>
+<span style="font-size: large">{{studentDTO.majorName}}</span>
+&nbsp;&nbsp;&nbsp;
+<span style="font-size: large; font-weight: bold;">Créditos Acumulados: </span>
+<span style="font-size: large">{{studentDTO.credits}}</span>
+<hr>
+<form [formGroup]="crudForm">
+    
+    <mat-form-field>
+        <mat-label>Curso</mat-label>
+        <mat-select formControlName="courseId">
+            <mat-option *ngFor="let course of courses" [value]="course.id">{{course.name}}</mat-option>
+        </mat-select>        
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <mat-form-field>
+        <mat-label>Ciclo</mat-label>
+        <input matInput formControlName="academicTerm">
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <mat-form-field>
+        <mat-label>Nota</mat-label>
+        <input matInput formControlName="grade">
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <button mat-flat-button (click)="Grabar()" >Grabar</button>
+    &nbsp;
+    <button mat-flat-button routerLink="/student-list" >Regresar</button>
+</form>
+
+
+<br>
+
+<table mat-table [dataSource]="dsStudentsCourses" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="courseName">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.courseName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="academicTerm">
+    <th mat-header-cell *matHeaderCellDef> Ciclo </th>
+    <td mat-cell *matCellDef="let element"> {{element.academicTerm}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="grade">
+    <th mat-header-cell *matHeaderCellDef> Nota </th>
+    <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="opciones">
+    <th mat-header-cell *matHeaderCellDef> Opciones </th>
+    <td mat-cell *matCellDef="let element"> 
+      <a style="cursor: pointer;" (click)="Borrar(element.id)"><mat-icon>delete</mat-icon></a>
+      </td>
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

@@ -1,0 +1,8 @@
+<mat-toolbar style="background-color: brown;">
+    <h1 style="color: white;"><b>Universidad App v1.0</b></h1>
+    <span class="example-spacer"></span>
+    <div *ngIf="HayUsuario()">
+    <a style="cursor: pointer; color:white" routerLink="/home"><mat-icon>home</mat-icon></a>
+    <a style="cursor: pointer; color:white" (click)="Logout()"><mat-icon>logout</mat-icon></a>
+    </div>
+</mat-toolbar>

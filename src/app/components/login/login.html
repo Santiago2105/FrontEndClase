@@ -1,0 +1,19 @@
+<h3>Bienvenido Usuario</h3>
+<br>
+<form [formGroup]="loginForm">
+
+    <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="username" >
+    </mat-form-field>
+        <br>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password">        
+    </mat-form-field>   
+</form>
+
+<br>
+<button mat-raised-button routerLink="/faculty-list">Registrase</button>
+ | 
+<button mat-flat-button (click)="Ingresar()" >Ingresar</button>
